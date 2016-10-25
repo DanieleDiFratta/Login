@@ -31,7 +31,7 @@ namespace LoginWeb
                             + "Per cambiarla effettua il login con la password temporanea e vai nella sezione cambia password.";
 
                 smptServer.Port = 587;
-                smptServer.Credentials = new System.Net.NetworkCredential("danale2@hotmail.it","Hamsik9498");
+                smptServer.Credentials = new System.Net.NetworkCredential("danale2@hotmail.it","");
                 smptServer.EnableSsl = true;
                 smptServer.Send(mail);
             }
@@ -44,23 +44,31 @@ namespace LoginWeb
         protected void SubmitButton_Click(object sender, EventArgs e)
         {
             string passTemp = System.Web.Security.Membership.GeneratePassword(7, 2);
-            SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString);
-            conn.Open();
-            SqlCommand comando = new SqlCommand("",conn);
-            comando.CommandText = "select email from Account where username = '" + PasswordRecovery1.UserName + "'";
-            SqlDataReader reader = comando.ExecuteReader();
-            reader.Read();
-            string email = (string)reader["email"];
-            var crypto = new SimpleCrypto.PBKDF2();
-            string encriptPass = crypto.Compute(passTemp);
-            conn.Close();
-            conn.Open();
-            comando = new SqlCommand("", conn);
-            comando.CommandText = "update Account set password='" + encriptPass + "', passwordSalt ='" + 
-                                   crypto.Salt + "' where username ='" + PasswordRecovery1.UserName + "'";
-            comando.ExecuteNonQuery();
-            conn.Close();
-            sendMail(email, passTemp);
+            try
+            {
+                SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString);
+                conn.Open();
+                SqlCommand comando = new SqlCommand("", conn);
+                comando.CommandText = "select email from Account where username = '" + PasswordRecovery1.UserName + "'";
+                SqlDataReader reader = comando.ExecuteReader();
+                reader.Read();
+                string email = (string)reader["email"];
+                var crypto = new SimpleCrypto.PBKDF2();
+                string encriptPass = crypto.Compute(passTemp);
+                conn.Close();
+                conn.Open();
+                comando = new SqlCommand("", conn);
+                comando.CommandText = "update Account set password='" + encriptPass + "', passwordSalt ='" +
+                                       crypto.Salt + "' where username ='" + PasswordRecovery1.UserName + "'";
+                comando.ExecuteNonQuery();
+                conn.Close();
+                sendMail(email, passTemp);
+            }
+            catch (Exception ex)
+            {
+                ex.ToString();
+                Response.Redirect(Request.Url.ToString());
+            }
             Response.Redirect("Default.aspx");
         }
     }
