@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Net.Mail;
@@ -43,7 +44,7 @@ namespace LoginWeb
         protected void SubmitButton_Click(object sender, EventArgs e)
         {
             string passTemp = System.Web.Security.Membership.GeneratePassword(7, 2);
-            SqlConnection conn = new SqlConnection("Data Source=DDIFRATTM;Initial Catalog=Ristorante;Integrated Security=True");
+            SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString);
             conn.Open();
             SqlCommand comando = new SqlCommand("",conn);
             comando.CommandText = "select email from Account where username = '" + PasswordRecovery1.UserName + "'";

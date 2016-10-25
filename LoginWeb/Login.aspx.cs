@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
@@ -18,7 +19,7 @@ namespace LoginWeb
 
         protected void LoginButton_Click(object sender, EventArgs e)
         {
-            SqlConnection conn = new SqlConnection("Data Source=DDIFRATTM;Initial Catalog=Ristorante;Integrated Security=True");
+            SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString);
             conn.Open();
             SqlCommand comando = new SqlCommand("select username,password,passwordsalt from Account where username='" + Login1.UserName + "'", conn);
             SqlDataReader reader = comando.ExecuteReader();
