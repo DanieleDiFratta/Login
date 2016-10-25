@@ -5,5 +5,7 @@
     <div style="height: 125px">
         Ciao,
         <asp:LoginName ID="LoginName1" runat="server" />
+        <br />
+        <asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl="~/ChangePassword.aspx">Cambia Password</asp:HyperLink>
         </div>
 </asp:Content>

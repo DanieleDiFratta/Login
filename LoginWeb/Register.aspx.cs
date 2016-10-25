@@ -29,9 +29,11 @@ namespace LoginWeb
                 conn.Open();
                 SqlCommand comando = new SqlCommand("", conn);
                 string userID = Guid.NewGuid().ToString();
+                var crypto = new SimpleCrypto.PBKDF2();
+                string encriptPassword = crypto.Compute(passwordInputText.Value);
                 comando.CommandText = "insert into Account values('" + userID + "','" +
-                                      usernameInputText.Value + "','" + passwordInputText.Value + "','"
-                                      + "ciao" + "','" + emailInputText.Text + "')";
+                                      usernameInputText.Value + "','" + encriptPassword + "','"
+                                      + crypto.Salt + "','" + emailInputText.Text + "')";
                 try
                 {
                     comando.ExecuteNonQuery();
@@ -39,9 +41,9 @@ namespace LoginWeb
                     conn.Close();
                     Response.Redirect("Default.aspx");
                 }
-                catch(Exception)
+                catch(Exception ex)
                 {
-                    errorLabel.Text = "email già in uso";
+                    errorLabel.Text = ex.ToString();
                     errorLabel.Visible = true;
                 }
             }

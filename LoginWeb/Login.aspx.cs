@@ -20,24 +20,33 @@ namespace LoginWeb
         {
             SqlConnection conn = new SqlConnection("Data Source=DDIFRATTM;Initial Catalog=Ristorante;Integrated Security=True");
             conn.Open();
-            SqlCommand comando = new SqlCommand("select username,password from Account where username='" + Login1.UserName + "'", conn);
+            SqlCommand comando = new SqlCommand("select username,password,passwordsalt from Account where username='" + Login1.UserName + "'", conn);
             SqlDataReader reader = comando.ExecuteReader();
             reader.Read();
-            string pass ="";
+            string pass="",salt ="";
+            var crypto = new SimpleCrypto.PBKDF2();
             try
             {
                 pass = (string)reader["Password"];
+                salt = (string)reader["PasswordSalt"];
             }
             catch(Exception)
             {
                 Response.Redirect("Default.aspx");
             }
-            if (pass != Login1.Password)
+            if (pass != crypto.Compute(Login1.Password,salt))
+            {
                 Response.Redirect("Default.aspx");
+            }
             else
             {
                 FormsAuthentication.SetAuthCookie(Login1.UserName, Login1.RememberMeSet);
-                Response.Redirect("Default.aspx");
+                var returnUrl = Request.QueryString["ReturnURL"];
+                if (string.IsNullOrEmpty(returnUrl))
+                {
+                    returnUrl = "~/";
+                }
+                Response.Redirect(returnUrl);
             }
         }
     }
