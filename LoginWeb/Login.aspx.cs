@@ -42,6 +42,7 @@ namespace LoginWeb
             else
             {
                 FormsAuthentication.SetAuthCookie(Login1.UserName, Login1.RememberMeSet);
+                //ritorna alla pagina precedente
                 var returnUrl = Request.QueryString["ReturnURL"];
                 if (string.IsNullOrEmpty(returnUrl))
                 {

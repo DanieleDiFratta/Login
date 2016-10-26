@@ -54,4 +54,5 @@
         <TextBoxStyle Font-Size="0.8em" />
         <TitleTextStyle BackColor="#990000" Font-Bold="True" Font-Size="0.9em" ForeColor="White" />
     </asp:Login>
+    <asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl="~/Default.aspx">Home</asp:HyperLink>
 </asp:Content>
