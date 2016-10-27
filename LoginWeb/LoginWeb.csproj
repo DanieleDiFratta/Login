@@ -110,6 +110,7 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Login.aspx" />
     <Content Include="Home\Menu.aspx" />
+    <Content Include="NewOrdinazione.aspx" />
     <Content Include="packages.config" />
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -202,6 +203,13 @@
     </Compile>
     <Compile Include="Home\Menu.aspx.designer.cs">
       <DependentUpon>Menu.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="NewOrdinazione.aspx.cs">
+      <DependentUpon>NewOrdinazione.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="NewOrdinazione.aspx.designer.cs">
+      <DependentUpon>NewOrdinazione.aspx</DependentUpon>
     </Compile>
     <Compile Include="PasswordRecovery.aspx.cs">
       <DependentUpon>PasswordRecovery.aspx</DependentUpon>

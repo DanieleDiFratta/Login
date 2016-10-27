@@ -19,6 +19,7 @@
                     <asp:MenuItem NavigateUrl="~/AddBibita.aspx" Text="Bibita" Value="Bibita"></asp:MenuItem>
                 </asp:MenuItem>
                 <asp:MenuItem NavigateUrl="~/Home/Menu.aspx" Text="Menù del giorno" Value="Menù del giorno"></asp:MenuItem>
+                <asp:MenuItem NavigateUrl="~/NewOrdinazione.aspx" Text="Nuova ordinazione" Value="Nuova ordinazione"></asp:MenuItem>
             </Items>
             <StaticHoverStyle BackColor="#990000" ForeColor="White" />
             <StaticMenuItemStyle HorizontalPadding="5px" VerticalPadding="2px" />

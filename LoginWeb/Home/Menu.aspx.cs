@@ -38,10 +38,6 @@ namespace LoginWeb
                 prezzopiatto.Add((decimal)reader["prezzo"]);
             }
             conn.Close();
-            //int numeroPiatto = new Random().Next(nomepiatto.Count - 1);
-            //nome.Text = nomepiatto[numeroPiatto];
-            //prezzo.Text = prezzopiatto[numeroPiatto].ToString();
-
             switch (DateTime.Now.DayOfWeek)
             {
                 case DayOfWeek.Sunday:
