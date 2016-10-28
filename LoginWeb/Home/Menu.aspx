@@ -2,6 +2,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+    <br />
     <asp:Table ID="Table1" runat="server" GridLines="Both" Height="98px" Width="191px">
         <asp:TableRow>
             <asp:TableCell>
@@ -35,5 +36,4 @@
     <asp:Label ID="totaleLabel" runat="server" Text="Label"></asp:Label>
     <br />
     <br />
-    <asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl="~/Default.aspx">« Indietro</asp:HyperLink>
-</asp:Content>
+    </asp:Content>

@@ -14,7 +14,14 @@ namespace LoginWeb
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            if (Request.Cookies["errore"]!=null && Request.Cookies["errore"].Value == "errore")
+            {
+                errorLabel.Visible = true;
+            }
+            else
+            {
+                errorLabel.Visible = false;
+            }
         }
 
         protected void ChangePasswordPushButton_Click(object sender, EventArgs e)
@@ -37,12 +44,13 @@ namespace LoginWeb
                                    crypto.Salt + "' where username ='" + Context.User.Identity.Name + "'";
                 comando.ExecuteNonQuery();
                 conn.Close();
+                Response.Cookies["errore"].Value = "ok";
                 Response.Redirect("Default.aspx");
             }
             else
             {
-                errorLabel.Text = "Password corrente sbagliata";
-                errorLabel.Visible = true;
+                Response.Cookies["errore"].Value = "errore";
+                Response.Redirect("ChangePassword.aspx");
             }
         }
     }

@@ -32,6 +32,5 @@
         </asp:table>
         <asp:Button ID="Button2" runat="server" OnClick="Button2_Click" Text="Aggiungi" />
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        <asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl="~/Default.aspx">Indietro</asp:HyperLink>
-    </div>
+        </div>
 </asp:Content>
